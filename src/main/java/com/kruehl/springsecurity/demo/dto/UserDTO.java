@@ -1,4 +1,4 @@
-package com.kruehl.springsecurity.demo.user;
+package com.kruehl.springsecurity.demo.dto;
 
 import com.kruehl.springsecurity.demo.validation.FieldMatch;
 
@@ -8,7 +8,7 @@ import javax.validation.constraints.Size;
 @FieldMatch.List({
         @FieldMatch(first = "password", second = "matchingPassword", message = "The password fields must match")
 })
-public class CrmUser {
+public class UserDTO {
 
     @NotNull(message = "is required")
     @Size(min = 1, message = "is required")
@@ -34,10 +34,10 @@ public class CrmUser {
     @Size(min = 1, message = "is required")
     private String email;
 
-    public CrmUser() {
+    public UserDTO() {
     }
 
-    public CrmUser(@NotNull(message = "is required") @Size(min = 1, message = "is required") String userName, @NotNull(message = "is required") @Size(min = 1, message = "is required") String password, @NotNull(message = "is required") @Size(min = 1, message = "is required") String matchingPassword, @NotNull(message = "is required") @Size(min = 1, message = "is required") String firstName, @NotNull(message = "is required") @Size(min = 1, message = "is required") String lastName, @NotNull(message = "is required") @Size(min = 1, message = "is required") String email) {
+    public UserDTO(@NotNull(message = "is required") @Size(min = 1, message = "is required") String userName, @NotNull(message = "is required") @Size(min = 1, message = "is required") String password, @NotNull(message = "is required") @Size(min = 1, message = "is required") String matchingPassword, @NotNull(message = "is required") @Size(min = 1, message = "is required") String firstName, @NotNull(message = "is required") @Size(min = 1, message = "is required") String lastName, @NotNull(message = "is required") @Size(min = 1, message = "is required") String email) {
         this.userName = userName;
         this.password = password;
         this.matchingPassword = matchingPassword;

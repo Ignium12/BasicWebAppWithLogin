@@ -1,9 +1,9 @@
 package com.kruehl.springsecurity.demo.service;
 
 import com.kruehl.springsecurity.demo.dao.UserDAO;
+import com.kruehl.springsecurity.demo.dto.UserDTO;
 import com.kruehl.springsecurity.demo.entity.Role;
 import com.kruehl.springsecurity.demo.entity.User;
-import com.kruehl.springsecurity.demo.user.CrmUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -36,13 +36,13 @@ public class UserServiceImpl implements UserService{
 
     @Override
     @Transactional
-    public void save(CrmUser crmUser) {
+    public void save(UserDTO userDTO) {
         User user = new User();
-        user.setUserName(crmUser.getUserName());
-        user.setPassword(passwordEncoder.encode(crmUser.getPassword()));
-        user.setFirstName(crmUser.getFirstName());
-        user.setLastName(crmUser.getLastName());
-        user.setEmail(crmUser.getEmail());
+        user.setUserName(userDTO.getUserName());
+        user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
+        user.setFirstName(userDTO.getFirstName());
+        user.setLastName(userDTO.getLastName());
+        user.setEmail(userDTO.getEmail());
         // give user default role of "employee"
         user.setRoles(Arrays.asList(new Role("ROLE_EMPLOYEE")));
         // save user in the database
