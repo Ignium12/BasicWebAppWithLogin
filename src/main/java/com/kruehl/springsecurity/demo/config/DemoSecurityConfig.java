@@ -1,5 +1,6 @@
 package com.kruehl.springsecurity.demo.config;
 
+import com.kruehl.springsecurity.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,10 +20,17 @@ public class DemoSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private DataSource securityDataSource;
 
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
-        auth.jdbcAuthentication().dataSource(securityDataSource);
+        auth.authenticationProvider(authenticationProvider());
+//        auth.jdbcAuthentication().dataSource(securityDataSource);
 
         // add our users for in memory authentication (not need anymore)
 
@@ -44,6 +52,7 @@ public class DemoSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/showMyLoginPage")
                 .loginProcessingUrl("/authenticateTheUser")
+                .successHandler(customAuthenticationSuccessHandler)
                 .permitAll()
                 .and()
                 .logout()
