@@ -1,5 +1,7 @@
 package com.kruehl.springsecurity.demo.user;
 
+import com.kruehl.springsecurity.demo.validation.FieldMatch;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
