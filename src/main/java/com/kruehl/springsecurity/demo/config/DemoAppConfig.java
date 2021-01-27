@@ -32,7 +32,7 @@ public class DemoAppConfig {
     private Environment environment;
 
     //set up logger for diagnostics
-    private Logger logger = Logger.getLogger(getClass().getName());
+    private final Logger logger = Logger.getLogger(getClass().getName());
 
 
     @Bean
